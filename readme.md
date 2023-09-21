@@ -1,0 +1,1 @@
+This project is for my course Apputveckling. I will be creating an app using React Native and ExpoGo. I will update the readme to include more details later!
