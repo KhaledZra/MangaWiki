@@ -1,16 +1,14 @@
-import { StatusBar } from 'expo-status-bar';
+import {Slot} from 'expo-router';
 import { StyleSheet } from 'react-native';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import MangaView from './app/mangaTopTen';
-import Berserk from './app/Berserk';
+import {SafeAreaProvider, SafeAreaView} from "react-native-safe-area-context";
+import {StatusBar} from "expo-status-bar";
 
-
-export default function App() {
+export default function Layout() {
   return (
     <SafeAreaProvider>
       <SafeAreaView style={{ flex: 1, backgroundColor: 'grey' }}>
         <StatusBar style="auto" />
-        <MangaView />
+        <Slot />
       </SafeAreaView>
     </SafeAreaProvider>
   );

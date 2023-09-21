@@ -25,6 +25,16 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "ee6685cf-ff43-40f3-b924-2ce2a40f1865"
+      }
+    },
+    "owner": "khaledzraiqi",
+    "plugins": [
+      "expo-router"
+    ],
+    "scheme": "your-app-scheme"
   }
 }
