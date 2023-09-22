@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, FlatList, Text, View, Image, StyleSheet, useWindowDimensions, ScrollView } from 'react-native';
+import { ActivityIndicator, FlatList, View, Image, StyleSheet, useWindowDimensions, ScrollView } from 'react-native';
 import { Manga } from '../src/data/manga';
+import {Box, HStack, Icon, IconButton, Text, StatusBar} from "native-base";
 
 const url = "https://manga-api-70c3.onrender.com/api/top-10"
 // https://manga-api-70c3.onrender.com/api/search?keyword=berserk
@@ -36,10 +37,47 @@ const MangaView = () => {
                 style={styles.cover}
               />
               <View style={styles.description}>
-                <Text style={styles.text}>Title: {item.title}</Text>
-                <Text style={styles.text}>Chapters: {item.chapters.total}</Text>
-                <Text style={styles.text}>Languages: {item.chapters.lang}</Text>
-                <Text style={styles.text}>Synopsis: {item.synopsis}</Text>
+
+                <Text style={styles.text}>
+                  <Text style={{fontWeight: "bold"}}>
+                    Title:
+                  </Text>
+                  <Text> </Text>
+                  <Text style={{fontWeight: "200"}}>
+                    {item.title}
+                  </Text>
+                </Text>
+
+                <Text style={styles.text}>
+                  <Text style={{fontWeight: "bold"}}>
+                    Languages:
+                  </Text>
+                  <Text> </Text>
+                  <Text style={{fontWeight: "200"}}>
+                    {item.chapters.total}
+                  </Text>
+                </Text>
+
+                <Text style={styles.text}>
+                  <Text style={{fontWeight: "bold"}}>
+                    Chapters:
+                  </Text>
+                  <Text> </Text>
+                  <Text style={{fontWeight: "200"}}>
+                    {item.chapters.lang}
+                  </Text>
+                </Text>
+
+                <Text style={styles.text}>
+                  <Text style={{fontWeight: "bold"}}>
+                    Synopsis:
+                  </Text>
+                  <Text> </Text>
+                  <Text style={{fontWeight: "200"}}>
+                    {item.synopsis}
+                  </Text>
+                </Text>
+
               </View>
             </ScrollView>
           }
