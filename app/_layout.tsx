@@ -1,7 +1,7 @@
 import {Slot} from 'expo-router';
 import {SafeAreaProvider, SafeAreaView} from "react-native-safe-area-context";
 import {Box, Center, extendTheme, NativeBaseProvider, StatusBar} from "native-base";
-import React from "react";
+import React, {createContext, useContext} from "react";
 import AppBar from "../components/AppBar";
 import {ImageBackground, StyleSheet} from "react-native";
 
@@ -24,7 +24,7 @@ export default function Layout() {
     <SafeAreaView style={{flex: 1}}>
       <NativeBaseProvider theme={customTheme}>
         <StatusBar backgroundColor="black" barStyle="light-content"/>
-        <AppBar/>
+        <AppBar />
         <ImageBackground source={bgImage} style={styles.image}>
           <Center flex={1}>
             <Slot/>

@@ -1,16 +1,18 @@
 import {Box, HStack, Icon, IconButton, Text, Menu, HamburgerIcon, Pressable} from "native-base";
 import { MaterialIcons } from "@expo/vector-icons";
-import {Link, router, useRouter} from "expo-router";
+import {Link, router, usePathname, useRouter} from "expo-router";
+import {useContext} from "react";
+import AppBarTitle from "./AppTitleHandler";
 
 export default function AppBar() {
+  const pathname = usePathname();
+
   return <>
     <Box safeAreaTop bg="#001543" />
     <HStack bg="#001543" px="1" py="3" justifyContent="space-between" alignItems="center" w="100%" maxW="500">
       <HStack alignItems="center">
         <MyMenu />
-        <Text color="white" fontSize="20" fontWeight="bold" marginLeft={2}>
-          MangaWiki
-        </Text>
+        <AppBarTitle />
       </HStack>
       <HStack>
         <IconButton icon={<Icon as={MaterialIcons} name="favorite" size="sm" color="white" />} />

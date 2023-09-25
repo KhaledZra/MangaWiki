@@ -4,7 +4,7 @@ import {Box, Button, Pressable, Text} from "native-base";
 
 export default function App() {
   return (
-    <Box>
+    <Box flexDirection={"row"}>
       <Link href="/Berserk" asChild>
         <Pressable
           rounded="8"
