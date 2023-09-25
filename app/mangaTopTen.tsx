@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, FlatList, View, Image, StyleSheet, useWindowDimensions, ScrollView } from 'react-native';
-import { Manga } from '../src/data/manga';
-import {Box, HStack, Icon, IconButton, Text, StatusBar} from "native-base";
+import React, {useEffect, useState} from 'react';
+import {ActivityIndicator, FlatList, View, Image, StyleSheet, useWindowDimensions, ScrollView} from 'react-native';
+import {Manga} from '../src/data/manga';
+import {Box, HStack, Icon, IconButton, Text, StatusBar, Center} from "native-base";
 
 const url = "https://manga-api-70c3.onrender.com/api/top-10"
 // https://manga-api-70c3.onrender.com/api/search?keyword=berserk
@@ -24,16 +24,21 @@ const MangaView = () => {
 
   return (
     <View style={styles.container}>
+      <Center>
+        <Text fontSize={20}>Top Ten Mangas</Text>
+      </Center>
       {isLoading ? (
-        <ActivityIndicator />
+        <Center>
+          <ActivityIndicator/>
+        </Center>
       ) : (
         <FlatList
           data={data}
           keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) =>
+          renderItem={({item}) =>
             <ScrollView style={styles.row} horizontal={true}>
               <Image
-                source={{ uri: item.cover }}
+                source={{uri: item.cover}}
                 style={styles.cover}
               />
               <View style={styles.description}>
@@ -70,10 +75,20 @@ const MangaView = () => {
 
                 <Text style={styles.text}>
                   <Text style={{fontWeight: "bold"}}>
+                    Genres:
+                  </Text>
+                  <Text> </Text>
+                  <Text fontWeight={"200"}>
+                    {item.genres.join(", ")}
+                  </Text>
+                </Text>
+
+                <Text style={styles.text}>
+                  <Text style={{fontWeight: "bold"}}>
                     Synopsis:
                   </Text>
                   <Text> </Text>
-                  <Text style={{fontWeight: "200"}}>
+                  <Text fontWeight={"200"}>
                     {item.synopsis}
                   </Text>
                 </Text>
@@ -105,8 +120,7 @@ const useStyle = () => {
 
       flexDirection: 'row',
     },
-    description: {
-    },
+    description: {},
     text: {
       flex: 1,
       flexWrap: 'wrap',
@@ -117,6 +131,10 @@ const useStyle = () => {
       width: useWindowDimensions().width / 2.5,
       height: useWindowDimensions().height / 3.5,
       marginRight: 10
+    },
+    pageTitle: {
+      fontSize: 30,
+      justifyContent: "center",
     },
   })
 }

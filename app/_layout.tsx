@@ -1,8 +1,9 @@
 import {Slot} from 'expo-router';
 import {SafeAreaProvider, SafeAreaView} from "react-native-safe-area-context";
-import {Box, extendTheme, NativeBaseProvider, StatusBar} from "native-base";
+import {Box, Center, extendTheme, NativeBaseProvider, StatusBar} from "native-base";
 import React from "react";
 import AppBar from "../components/AppBar";
+import {ImageBackground, StyleSheet} from "react-native";
 
 // Define the config
 const config = {
@@ -12,19 +13,32 @@ const config = {
 
 const customTheme = extendTheme({config});
 export default function Layout() {
+  const bgImage = require('../assets/BackgroundImage.jpg');
+
   return (
+
     // <SafeAreaProvider>
     //
     // </SafeAreaProvider>
 
     <SafeAreaView style={{flex: 1}}>
-      <StatusBar backgroundColor="black" barStyle="light-content" />
       <NativeBaseProvider theme={customTheme}>
+        <StatusBar backgroundColor="black" barStyle="light-content"/>
         <AppBar/>
-        <Box flex={1} alignItems="center" justifyContent="center" bg={"#000614"}>
-          <Slot/>
-        </Box>
+        <ImageBackground source={bgImage} style={styles.image}>
+          <Center flex={1}>
+            <Slot/>
+          </Center>
+        </ImageBackground>
       </NativeBaseProvider>
     </SafeAreaView>
   );
 }
+
+
+const styles = StyleSheet.create({
+  image: {
+    width: '100%',
+    height: '100%'
+  }
+});
