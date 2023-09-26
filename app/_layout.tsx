@@ -17,21 +17,26 @@ export default function Layout() {
 
   return (
 
-    // <SafeAreaProvider>
-    //
-    // </SafeAreaProvider>
+    <SafeAreaProvider>
+      <SafeAreaView style={{flex: 1}}>
+        <NativeBaseProvider theme={customTheme}>
+          <AppBar />
+          <ImageBackground source={bgImage} style={styles.image}>
+            <Center flex={1} safeAreaBottom={12}>
+              <StatusBar backgroundColor="black" barStyle="light-content"/>
+              <Box>
+                <Slot/>
+              </Box>
+            </Center>
+          </ImageBackground>
+        </NativeBaseProvider>
+      </SafeAreaView>
+    </SafeAreaProvider>
 
-    <SafeAreaView style={{flex: 1}}>
-      <NativeBaseProvider theme={customTheme}>
-        <StatusBar backgroundColor="black" barStyle="light-content"/>
-        <AppBar />
-        <ImageBackground source={bgImage} style={styles.image}>
-          <Center flex={1}>
-            <Slot/>
-          </Center>
-        </ImageBackground>
-      </NativeBaseProvider>
-    </SafeAreaView>
+
+
+
+
   );
 }
 

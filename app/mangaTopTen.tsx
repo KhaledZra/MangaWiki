@@ -24,9 +24,6 @@ const MangaView = () => {
 
   return (
     <View style={styles.container}>
-      <Center>
-        <Text fontSize={20}>Top Ten Mangas</Text>
-      </Center>
       {isLoading ? (
         <Center>
           <ActivityIndicator/>
@@ -55,7 +52,7 @@ const MangaView = () => {
 
                 <Text style={styles.text}>
                   <Text style={{fontWeight: "bold"}}>
-                    Languages:
+                    Chapters:
                   </Text>
                   <Text> </Text>
                   <Text style={{fontWeight: "200"}}>
@@ -65,7 +62,7 @@ const MangaView = () => {
 
                 <Text style={styles.text}>
                   <Text style={{fontWeight: "bold"}}>
-                    Chapters:
+                    Languages:
                   </Text>
                   <Text> </Text>
                   <Text style={{fontWeight: "200"}}>
@@ -73,16 +70,21 @@ const MangaView = () => {
                   </Text>
                 </Text>
 
-                <Text style={styles.text}>
-                  <Text style={{fontWeight: "bold"}}>
-                    Genres:
-                  </Text>
-                  <Text> </Text>
-                  <Text fontWeight={"200"}>
-                    {item.genres.join(", ")}
-                  </Text>
-                </Text>
 
+                {item.genres ? (
+                    <Text style={styles.text}>
+                      <Text style={{fontWeight: "bold"}}>
+                        Genres:
+                      </Text>
+                      <Text> </Text>
+                      <Text fontWeight={"200"}>
+                        {item.genres.join(", ")}
+                      </Text>
+                    </Text>)
+                  : false}
+
+
+                {item.synopsis ? (
                 <Text style={styles.text}>
                   <Text style={{fontWeight: "bold"}}>
                     Synopsis:
@@ -91,7 +93,8 @@ const MangaView = () => {
                   <Text fontWeight={"200"}>
                     {item.synopsis}
                   </Text>
-                </Text>
+                </Text>)
+                  : false}
 
               </View>
             </ScrollView>
