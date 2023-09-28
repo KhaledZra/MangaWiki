@@ -34,10 +34,9 @@ function MyMenu() {
     }}>
       <Menu.Group title={"Options"}>
         <Menu.Item onPress={() => router.replace("/")}>Home</Menu.Item>
-
-        <Menu.Item  onPress={() => router.replace("/mangaTopTen")}>Top 10</Menu.Item>
-
-        <Menu.Item disabled={true}>Popular</Menu.Item>
+        <Menu.Item onPress={() => router.replace("/manga/top-10")}>Top 10</Menu.Item>
+        <Menu.Item onPress={() => router.replace("/manga/popular")}>Popular</Menu.Item>
+        <Menu.Item onPress={() => router.replace("/randomManga")}>Random</Menu.Item>
       </Menu.Group>
     </Menu>
   )

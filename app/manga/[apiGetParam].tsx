@@ -1,19 +1,21 @@
+import {useGlobalSearchParams} from "expo-router";
 import React, {useEffect, useState} from 'react';
 import {ActivityIndicator, StyleSheet, useWindowDimensions, ScrollView} from 'react-native';
-import {Manga} from '../src/data/manga';
+import {Manga} from "../../src/data/manga";
 import {Box, Text, Center, FlatList, Image} from "native-base";
 
-const url = "https://manga-api-70c3.onrender.com/api/top-10"
 // https://manga-api-70c3.onrender.com/api/search?keyword=berserk
 // https://api.mangadex.org/docs/swagger.html#/Manga/get-manga-random
 // https://myanimelist.net/apiconfig/references/api/v2#operation/manga_get
 // https://nativebase.io/
 
 const MangaView = () => {
+  const { apiGetParam} = useGlobalSearchParams();
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState<Manga[]>([]);
   const styles = useStyle();
 
+  const url = "https://manga-api-70c3.onrender.com/api/" + apiGetParam;
 
 
   useEffect(() => {
@@ -88,15 +90,15 @@ const MangaView = () => {
 
 
                 {item.synopsis ? (
-                <Text style={styles.text}>
-                  <Text style={{fontWeight: "bold"}}>
-                    Synopsis:
-                  </Text>
-                  <Text> </Text>
-                  <Text fontWeight={"200"}>
-                    {item.synopsis}
-                  </Text>
-                </Text>)
+                    <Text style={styles.text}>
+                      <Text style={{fontWeight: "bold"}}>
+                        Synopsis:
+                      </Text>
+                      <Text> </Text>
+                      <Text fontWeight={"200"}>
+                        {item.synopsis}
+                      </Text>
+                    </Text>)
                   : false}
 
               </Box>

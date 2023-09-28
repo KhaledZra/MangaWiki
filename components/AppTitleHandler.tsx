@@ -15,8 +15,14 @@ function getProperTitleName() {
   if (pathname === "/") {
     return "Home"
   }
-  else if (pathname === "/mangaTopTen") {
-    return "Top Ten"
+  else if (pathname === "/manga/top-10") {
+    return "Top Ten Mangas"
+  }
+  else if (pathname === "/manga/popular") {
+    return "Popular Mangas"
+  }
+  else if (pathname === "/randomManga") {
+    return "Random Manga"
   }
   else if (pathname === "/Berserk") {
     return "Berserk"

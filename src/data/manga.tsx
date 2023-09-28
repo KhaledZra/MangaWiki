@@ -6,6 +6,11 @@ export interface Manga {
   synopsis: string
   chapters: Chapters
   genres: string[]
+
+  score: number
+  published: string
+  status: string
+  type: string
 }
 
 export interface Chapters {

@@ -1,7 +1,7 @@
 import {Slot} from 'expo-router';
 import {SafeAreaProvider, SafeAreaView} from "react-native-safe-area-context";
 import {Box, Center, extendTheme, NativeBaseProvider, StatusBar} from "native-base";
-import React, {createContext, useContext} from "react";
+import React from "react";
 import AppBar from "../components/AppBar";
 import {ImageBackground, StyleSheet} from "react-native";
 
