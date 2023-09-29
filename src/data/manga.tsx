@@ -6,6 +6,7 @@ export interface Manga {
   synopsis: string
   chapters: Chapters
   genres: string[]
+  langs: string[]
 
   score: number
   published: string

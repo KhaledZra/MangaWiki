@@ -1,10 +1,13 @@
-import { Link } from 'expo-router';
+import {Link, router} from 'expo-router';
 import React from "react";
-import {Center, Pressable, Text, VStack} from "native-base";
+import {Center, Heading, Icon, Input, Pressable, VStack} from "native-base";
+import {Ionicons} from "@expo/vector-icons";
+import {NativeSyntheticEvent, TextInputSubmitEditingEventData} from "react-native";
 
 export default function App() {
   return (
     <VStack space={4}>
+      <SearchBar/>
       <Link href="/Berserk" asChild>
         <Pressable
           rounded="8"
@@ -77,4 +80,28 @@ export default function App() {
 
     </VStack>
   );
+}
+
+function SearchBar() {
+  const [searchValue, setSearchValue] = React.useState<string>("");
+  const handleChange = (text: string) => setSearchValue(text);
+
+  const onSubmit = (event: NativeSyntheticEvent<TextInputSubmitEditingEventData>) => {
+    const formatedSearchText = event.nativeEvent.text.replace(" ", "-");
+    router.replace("/manga/search/" + formatedSearchText);
+  }
+  return(
+    <VStack w="100%" space={5} alignSelf="center">
+      <Heading fontSize="lg">Search for a Manga!</Heading>
+      <Input
+        value={searchValue}
+        onChangeText={handleChange}
+        onSubmitEditing={onSubmit}
+        placeholder="Search"
+        variant="filled"
+        width="100%"
+        borderRadius="10" py="1" px="2"
+        InputLeftElement={<Icon ml="2" size="4" color="gray.400" as={<Ionicons name="ios-search"/>}/>}/>
+    </VStack>
+  )
 }

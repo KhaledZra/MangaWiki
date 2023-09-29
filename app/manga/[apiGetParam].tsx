@@ -112,9 +112,6 @@ const MangaView = () => {
 };
 
 const useStyle = () => {
-  const dimensions = useWindowDimensions();
-  console.log('Logging dimensions', dimensions)
-
   return StyleSheet.create({
     container: {
       flex: 1,

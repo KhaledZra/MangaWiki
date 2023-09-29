@@ -1,19 +1,20 @@
+import {useGlobalSearchParams} from "expo-router";
 import React, {useEffect, useState} from 'react';
 import {ActivityIndicator, StyleSheet, useWindowDimensions, ScrollView} from 'react-native';
-import {Manga} from '../src/data/manga';
+import {Manga} from "../../../src/data/manga";
 import {Box, Text, Center, FlatList, Image} from "native-base";
 
-const url = "https://manga-api-70c3.onrender.com/api/top-10"
 // https://manga-api-70c3.onrender.com/api/search?keyword=berserk
 // https://api.mangadex.org/docs/swagger.html#/Manga/get-manga-random
 // https://myanimelist.net/apiconfig/references/api/v2#operation/manga_get
 // https://nativebase.io/
 
 const MangaView = () => {
+  const { apiGetSearch} = useGlobalSearchParams();
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState<Manga[]>([]);
   const styles = useStyle();
-
+  const url = "https://manga-api-70c3.onrender.com/api/search/?keyword=" + apiGetSearch;
 
 
   useEffect(() => {
@@ -31,7 +32,7 @@ const MangaView = () => {
           <ActivityIndicator/>
         </Center>
       ) : (
-        <FlatList
+        data.length > 0 ? (<FlatList
           data={data}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({item}) =>
@@ -69,40 +70,15 @@ const MangaView = () => {
                   </Text>
                   <Text> </Text>
                   <Text style={{fontWeight: "200"}}>
-                    {item.chapters.lang}
+                    {item.langs.join(", ")}
                   </Text>
                 </Text>
-
-
-                {item.genres ? (
-                    <Text style={styles.text}>
-                      <Text style={{fontWeight: "bold"}}>
-                        Genres:
-                      </Text>
-                      <Text> </Text>
-                      <Text fontWeight={"200"}>
-                        {item.genres.join(", ")}
-                      </Text>
-                    </Text>)
-                  : false}
-
-
-                {item.synopsis ? (
-                <Text style={styles.text}>
-                  <Text style={{fontWeight: "bold"}}>
-                    Synopsis:
-                  </Text>
-                  <Text> </Text>
-                  <Text fontWeight={"200"}>
-                    {item.synopsis}
-                  </Text>
-                </Text>)
-                  : false}
 
               </Box>
             </ScrollView>
           }
-        />
+        />) : (<Text fontSize={30}>No results :(</Text>)
+
       )
       }
     </Box>
