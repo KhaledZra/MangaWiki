@@ -10,7 +10,7 @@ import {Box, Text, Center, FlatList, Image} from "native-base";
 // https://nativebase.io/
 
 const MangaView = () => {
-  const { apiGetSearch} = useGlobalSearchParams();
+  const {apiGetSearch} = useGlobalSearchParams();
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState<Manga[]>([]);
   const styles = useStyle();
@@ -26,62 +26,65 @@ const MangaView = () => {
   }, []);
 
   return (
-    <Box style={styles.container}>
-      {isLoading ? (
-        <Center>
-          <ActivityIndicator/>
-        </Center>
-      ) : (
-        data.length > 0 ? (<FlatList
-          data={data}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({item}) =>
-            <ScrollView style={styles.row} horizontal={true}>
-              <Image
-                source={{uri: item.cover}}
-                style={styles.cover}
-                alt={"Manga cover image"}
-              />
-              <Box style={styles.description}>
+    <>
+      <Center>{apiGetSearch}</Center>
+      <Box style={styles.container}>
+        {isLoading ? (
+          <Center>
+            <ActivityIndicator/>
+          </Center>
+        ) : (
+          data.length > 0 ? (
+            <FlatList
+              data={data}
+              keyExtractor={(item) => item.id.toString()}
+              renderItem={({item}) =>
+                <ScrollView style={styles.row} horizontal={true}>
+                  <Image
+                    source={{uri: item.cover}}
+                    style={styles.cover}
+                    alt={"Manga cover image"}
+                  />
+                  <Box style={styles.description}>
 
-                <Text style={styles.text}>
-                  <Text style={{fontWeight: "bold"}}>
-                    Title:
-                  </Text>
-                  <Text> </Text>
-                  <Text style={{fontWeight: "200"}}>
-                    {item.title}
-                  </Text>
-                </Text>
+                    <Text style={styles.text}>
+                      <Text style={{fontWeight: "bold"}}>
+                        Title:
+                      </Text>
+                      <Text> </Text>
+                      <Text style={{fontWeight: "200"}}>
+                        {item.title}
+                      </Text>
+                    </Text>
 
-                <Text style={styles.text}>
-                  <Text style={{fontWeight: "bold"}}>
-                    Chapters:
-                  </Text>
-                  <Text> </Text>
-                  <Text style={{fontWeight: "200"}}>
-                    {item.chapters.total}
-                  </Text>
-                </Text>
+                    <Text style={styles.text}>
+                      <Text style={{fontWeight: "bold"}}>
+                        Chapters:
+                      </Text>
+                      <Text> </Text>
+                      <Text style={{fontWeight: "200"}}>
+                        {item.chapters.total}
+                      </Text>
+                    </Text>
 
-                <Text style={styles.text}>
-                  <Text style={{fontWeight: "bold"}}>
-                    Languages:
-                  </Text>
-                  <Text> </Text>
-                  <Text style={{fontWeight: "200"}}>
-                    {item.langs.join(", ")}
-                  </Text>
-                </Text>
+                    <Text style={styles.text}>
+                      <Text style={{fontWeight: "bold"}}>
+                        Languages:
+                      </Text>
+                      <Text> </Text>
+                      <Text style={{fontWeight: "200"}}>
+                        {item.langs.join(", ")}
+                      </Text>
+                    </Text>
 
-              </Box>
-            </ScrollView>
-          }
-        />) : (<Text fontSize={30}>No results :(</Text>)
-
-      )
-      }
-    </Box>
+                  </Box>
+                </ScrollView>
+              }
+            />) : (<Text fontSize={30}>No results :(</Text>)
+        )
+        }
+      </Box>
+    </>
   );
 };
 
