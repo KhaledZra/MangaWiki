@@ -87,8 +87,9 @@ function SearchBar() {
   const handleChange = (text: string) => setSearchValue(text);
 
   const onSubmit = (event: NativeSyntheticEvent<TextInputSubmitEditingEventData>) => {
-    const formatedSearchText = event.nativeEvent.text.replace(" ", "-");
-    router.replace("/manga/search/" + formatedSearchText);
+    if (event.nativeEvent.text.length > 0) {
+      router.replace("/manga/search/" + event.nativeEvent.text);
+    }
   }
   return(
     <VStack w="100%" space={5} alignSelf="center">

@@ -1,7 +1,7 @@
 import {useGlobalSearchParams} from "expo-router";
 import React, {useEffect, useState} from 'react';
 import {ActivityIndicator, StyleSheet, useWindowDimensions, ScrollView} from 'react-native';
-import {Manga} from "../../../src/data/manga";
+import {MangaVerse} from "../../../src/data/manga";
 import {Box, Text, Center, FlatList, Image} from "native-base";
 
 // https://manga-api-70c3.onrender.com/api/search?keyword=berserk
@@ -9,21 +9,58 @@ import {Box, Text, Center, FlatList, Image} from "native-base";
 // https://myanimelist.net/apiconfig/references/api/v2#operation/manga_get
 // https://nativebase.io/
 
+const options = {
+  method: 'GET',
+  headers: {
+    'X-RapidAPI-Key': 'a78a47c0c3msh5eb9bdb3d41c8b6p14054djsn0ecf136b57fb',
+    'X-RapidAPI-Host': 'mangaverse-api.p.rapidapi.com'
+  }
+};
+
+
+
 const MangaView = () => {
   const {apiGetSearch} = useGlobalSearchParams();
   const [isLoading, setLoading] = useState(true);
-  const [data, setData] = useState<Manga[]>([]);
+  const [mangaResult, setResult] = useState<MangaVerse>();
   const styles = useStyle();
-  const url = "https://manga-api-70c3.onrender.com/api/search/?keyword=" + apiGetSearch;
+
+  if (apiGetSearch == null) {
+    return <Box>No results!</Box>
+  }
+
+  const urlParam = new URLSearchParams({
+    text: apiGetSearch.toString()
+  })
+  const url = "https://mangaverse-api.p.rapidapi.com/manga/search?" + urlParam.toString();
 
 
   useEffect(() => {
-    fetch(url)
-      .then((resp) => resp.json())
-      .then((json) => setData(json))
+    fetch(url, options)
+      .then((resp) => {
+        if (resp.status === 200) {
+          return resp.json()
+        }
+        else {
+          throw new Error('Not status code 200! Status: ' + resp.status)
+        }
+      })
+      .then((json) => setResult(json))
       .catch((error) => console.error(error))
       .finally(() => setLoading(false));
   }, []);
+
+  // if (mangaResult == null) {
+  //   return <Text fontSize={30}>Bad search!</Text>
+  // }
+  //
+  // if (mangaResult.code != 200) {
+  //   return <Text fontSize={30}>Was not successful!</Text>
+  // }
+  //
+  // if (mangaResult.data.length < 1) {
+  //   return <Text fontSize={30}>No results! :(</Text>
+  // }
 
   return (
     <>
@@ -34,14 +71,15 @@ const MangaView = () => {
             <ActivityIndicator/>
           </Center>
         ) : (
-          data.length > 0 ? (
+          mangaResult ? (
+              mangaResult.data.length > 0 ? (
             <FlatList
-              data={data}
+              data={mangaResult.data}
               keyExtractor={(item) => item.id.toString()}
               renderItem={({item}) =>
                 <ScrollView style={styles.row} horizontal={true}>
                   <Image
-                    source={{uri: item.cover}}
+                    source={{uri: item.thumb}}
                     style={styles.cover}
                     alt={"Manga cover image"}
                   />
@@ -59,28 +97,48 @@ const MangaView = () => {
 
                     <Text style={styles.text}>
                       <Text style={{fontWeight: "bold"}}>
-                        Chapters:
+                        Status:
                       </Text>
                       <Text> </Text>
                       <Text style={{fontWeight: "200"}}>
-                        {item.chapters.total}
+                        {item.status}
                       </Text>
                     </Text>
 
                     <Text style={styles.text}>
                       <Text style={{fontWeight: "bold"}}>
-                        Languages:
+                        Authors:
                       </Text>
                       <Text> </Text>
                       <Text style={{fontWeight: "200"}}>
-                        {item.langs.join(", ")}
+                        {item.authors.join(", ")}
+                      </Text>
+                    </Text>
+
+                    <Text style={styles.text}>
+                      <Text style={{fontWeight: "bold"}}>
+                        Genres:
+                      </Text>
+                      <Text> </Text>
+                      <Text style={{fontWeight: "200"}}>
+                        {item.genres.join(", ")}
+                      </Text>
+                    </Text>
+
+                    <Text style={styles.text}>
+                      <Text style={{fontWeight: "bold"}}>
+                        Summary:
+                      </Text>
+                      <Text> </Text>
+                      <Text style={{fontWeight: "200"}}>
+                        {item.summary}
                       </Text>
                     </Text>
 
                   </Box>
                 </ScrollView>
               }
-            />) : (<Text fontSize={30}>No results :(</Text>)
+            />) : (<Text fontSize={30}>Bad search!</Text>) ) : (<Text fontSize={30}>No results! :(</Text>)
         )
         }
       </Box>
