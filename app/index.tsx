@@ -36,7 +36,7 @@ export default function App() {
       {/*  </Pressable>*/}
       {/*</Link>*/}
 
-      <Link href="/randomManga" asChild>
+      <Link href="/RandomManga" asChild>
         <Pressable
           rounded="8"
           overflow="hidden"

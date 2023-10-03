@@ -4,7 +4,7 @@ import {ActivityIndicator, StyleSheet, useWindowDimensions, ScrollView} from 're
 import {Manga} from "../src/data/manga";
 import {Box, Text, Center, FlatList, Image, VStack} from "native-base";
 
-const MangaView = () => {
+export default function RandomManga() {
   const {apiGetParam} = useGlobalSearchParams();
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState<Manga>();
@@ -26,7 +26,7 @@ const MangaView = () => {
       .then((json) => setData(json))
       .catch((error) => {
         console.log(error);
-        router.replace("/randomManga");
+        router.replace("/RandomManga");
       })
       .finally(() => setLoading(false));
   }, []);

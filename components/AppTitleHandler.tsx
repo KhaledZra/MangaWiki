@@ -24,7 +24,7 @@ function getProperTitleName() {
   else if (pathname.includes("/manga/search/")) {
     return "Searching"
   }
-  else if (pathname === "/randomManga") {
+  else if (pathname === "/RandomManga") {
     return "Random Manga"
   }
   else if (pathname === "/Berserk") {
