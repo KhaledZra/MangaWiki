@@ -32,14 +32,8 @@ export default function Layout() {
         </NativeBaseProvider>
       </SafeAreaView>
     </SafeAreaProvider>
-
-
-
-
-
   );
 }
-
 
 const styles = StyleSheet.create({
   image: {

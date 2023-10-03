@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react';
 import {ActivityIndicator, StyleSheet, useWindowDimensions, ScrollView} from 'react-native';
 import {Manga} from "../../src/data/manga";
 import {Box, Text, Center, FlatList, Image} from "native-base";
+import RenderManga from "../../components/renderViews/RenderManga";
 
 // https://manga-api-70c3.onrender.com/api/search?keyword=berserk
 // https://api.mangadex.org/docs/swagger.html#/Manga/get-manga-random
@@ -36,73 +37,7 @@ const MangaView = () => {
         <FlatList
           data={data}
           keyExtractor={(item) => item.id.toString()}
-          renderItem={({item}) =>
-            <ScrollView style={styles.row} horizontal={true}>
-              <Image
-                source={{uri: item.cover}}
-                style={styles.cover}
-                alt={"Manga cover image"}
-              />
-              <Box style={styles.description}>
-
-                <Text style={styles.text}>
-                  <Text style={{fontWeight: "bold"}}>
-                    Title:
-                  </Text>
-                  <Text> </Text>
-                  <Text style={{fontWeight: "200"}}>
-                    {item.title}
-                  </Text>
-                </Text>
-
-                <Text style={styles.text}>
-                  <Text style={{fontWeight: "bold"}}>
-                    Chapters:
-                  </Text>
-                  <Text> </Text>
-                  <Text style={{fontWeight: "200"}}>
-                    {item.chapters.total}
-                  </Text>
-                </Text>
-
-                <Text style={styles.text}>
-                  <Text style={{fontWeight: "bold"}}>
-                    Languages:
-                  </Text>
-                  <Text> </Text>
-                  <Text style={{fontWeight: "200"}}>
-                    {item.chapters.lang}
-                  </Text>
-                </Text>
-
-
-                {item.genres ? (
-                    <Text style={styles.text}>
-                      <Text style={{fontWeight: "bold"}}>
-                        Genres:
-                      </Text>
-                      <Text> </Text>
-                      <Text fontWeight={"200"}>
-                        {item.genres.join(", ")}
-                      </Text>
-                    </Text>)
-                  : false}
-
-
-                {item.synopsis ? (
-                    <Text style={styles.text}>
-                      <Text style={{fontWeight: "bold"}}>
-                        Synopsis:
-                      </Text>
-                      <Text> </Text>
-                      <Text fontWeight={"200"}>
-                        {item.synopsis}
-                      </Text>
-                    </Text>)
-                  : false}
-
-              </Box>
-            </ScrollView>
+          renderItem={({item}) => <RenderManga {...item}/>
           }
         />
       )

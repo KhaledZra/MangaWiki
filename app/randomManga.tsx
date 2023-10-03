@@ -165,5 +165,3 @@ const useStyle = () => {
     },
   })
 }
-
-export default MangaView;
