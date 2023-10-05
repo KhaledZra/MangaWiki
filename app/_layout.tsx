@@ -23,7 +23,7 @@ export default function Layout() {
           <AppBar />
           <ImageBackground source={bgImage} style={styles.image}>
             <Center flex={1} safeAreaBottom={12}>
-              <StatusBar backgroundColor="black" barStyle="light-content"/>
+              <StatusBar backgroundColor="#101110" barStyle="light-content"/>
               <Box>
                 <Slot/>
               </Box>

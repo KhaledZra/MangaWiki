@@ -5,15 +5,15 @@ import AppBarTitle from "./AppTitleHandler";
 
 export default function AppBar() {
   return <>
-    <Box safeAreaTop bg="#001543" style={{}}/>
-    <HStack bg="#001543" px="1" py="3" justifyContent="space-between" alignItems="center" w="100%" maxW="500">
-      <HStack alignItems="center">
+    <Box safeAreaTop style={{}}/>
+    <HStack bg="#101110" px="1" py="3" justifyContent="space-between" alignItems="center" w="100%" maxW="500">
+      <HStack alignItems="center" paddingLeft={2}>
         <MyMenu/>
         <AppBarTitle/>
       </HStack>
       <HStack>
         <IconButton icon={<Icon as={MaterialIcons} name="home" size="lg" color="white"/>}
-                  onPress={() => router.replace("/")}/>
+                    onPress={() => router.replace("/")}/>
       </HStack>
     </HStack>
   </>;
