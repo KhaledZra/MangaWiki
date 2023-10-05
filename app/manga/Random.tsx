@@ -1,8 +1,8 @@
-import {router, useGlobalSearchParams} from "expo-router";
+import {Link, router, useGlobalSearchParams} from "expo-router";
 import React, {useEffect, useState} from 'react';
 import {ActivityIndicator, StyleSheet, useWindowDimensions, ScrollView} from 'react-native';
 import {Manga} from "../../data/manga";
-import {Box, Text, Center, FlatList, Image, VStack} from "native-base";
+import {Box, Text, Center, FlatList, Image, VStack, Pressable, Heading} from "native-base";
 
 export default function Random() {
   const [isLoading, setLoading] = useState(true);
@@ -25,7 +25,7 @@ export default function Random() {
       .then((json) => setData(json))
       .catch((error) => {
         console.log(error);
-        router.replace("/Random");
+        router.replace("/manga/Random");
       })
       .finally(() => setLoading(false));
   }, []);
@@ -38,7 +38,20 @@ export default function Random() {
         </Center>
       ) : (
         data ? (
-            <VStack safeAreaBottom={6}>
+            <VStack safeArea={6} space={2}>
+              <Pressable
+                onPress={() => router.replace('manga/Random')}
+                rounded="8"
+                overflow="hidden"
+                borderWidth="1"
+                borderColor="coolGray.300"
+                maxW="96"
+                shadow="3"
+                bg="coolGray.700"
+                p="5">
+                <Center><Heading>Randomize Again</Heading></Center>
+              </Pressable>
+
               <Center>
                 <Image
                   source={{uri: data.cover}}
@@ -155,9 +168,8 @@ const useStyle = () => {
       fontSize: 20,
     },
     cover: {
-      width: useWindowDimensions().width/1.4,
-      height: useWindowDimensions().height/2,
-      marginRight: 10
+      width: useWindowDimensions().width/1.2,
+      height: useWindowDimensions().height/1.7,
     },
     textSize: {
 

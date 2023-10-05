@@ -2,13 +2,8 @@ import {useGlobalSearchParams} from "expo-router";
 import React, {useEffect, useState} from 'react';
 import {ActivityIndicator, StyleSheet, useWindowDimensions, ScrollView} from 'react-native';
 import {Manga} from "../../data/manga";
-import {Box, Text, Center, FlatList, Image} from "native-base";
+import {Box, Center, FlatList} from "native-base";
 import RenderManga from "../../components/renderViews/RenderManga";
-
-// https://manga-api-70c3.onrender.com/api/search?keyword=berserk
-// https://api.mangadex.org/docs/swagger.html#/Manga/get-manga-random
-// https://myanimelist.net/apiconfig/references/api/v2#operation/manga_get
-// https://nativebase.io/
 
 const MangaView = () => {
   const { apiGetParam} = useGlobalSearchParams();
@@ -28,7 +23,7 @@ const MangaView = () => {
   }, []);
 
   return (
-    <Box style={styles.container}>
+    <Box style={styles.container} safeAreaBottom={5}>
       {isLoading ? (
         <Center>
           <ActivityIndicator/>
@@ -51,31 +46,7 @@ const useStyle = () => {
     container: {
       flex: 1,
       justifyContent: 'space-between'
-    },
-    row: {
-      padding: 7,
-      borderBottomColor: 'white',
-      borderBottomWidth: StyleSheet.hairlineWidth,
-      borderTopWidth: StyleSheet.hairlineWidth,
-
-      flexDirection: 'row',
-    },
-    description: {},
-    text: {
-      flex: 1,
-      flexWrap: 'wrap',
-      width: useWindowDimensions().width,
-      fontSize: 20,
-    },
-    cover: {
-      width: useWindowDimensions().width / 2.5,
-      height: useWindowDimensions().height / 3.5,
-      marginRight: 10
-    },
-    pageTitle: {
-      fontSize: 30,
-      justifyContent: "center",
-    },
+    }
   })
 }
 

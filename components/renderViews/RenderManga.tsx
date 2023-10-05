@@ -1,6 +1,5 @@
 import {Manga} from "../../data/manga";
-import {ScrollView, StyleSheet, useWindowDimensions} from "react-native";
-import {Box, Image, Text} from "native-base";
+import {Box, Image, Text, ScrollView} from "native-base";
 import React from "react";
 import {useStyle} from "../MangaListStyles";
 
@@ -13,7 +12,7 @@ export default function RenderManga (manga: Manga) {
         style={styles.cover}
         alt={"Manga cover image"}
       />
-      <Box>
+      <Box style={styles.description} safeArea={3}>
 
         <Text style={styles.text}>
           <Text style={{fontWeight: "bold"}}>

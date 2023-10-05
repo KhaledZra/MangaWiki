@@ -7,18 +7,19 @@ export function useStyle() {
       justifyContent: 'space-between'
     },
     row: {
-      padding: 7,
-      borderBottomColor: 'white',
-      borderBottomWidth: StyleSheet.hairlineWidth,
-      borderTopWidth: StyleSheet.hairlineWidth,
-
+      padding: 9,
       flexDirection: 'row',
     },
-    description: {},
+    description: {
+      borderWidth: 3,
+      borderColor: "white",
+      borderRadius: 20,
+      width: useWindowDimensions().width,
+      marginRight: 10,
+    },
     text: {
       flex: 1,
       flexWrap: 'wrap',
-      width: useWindowDimensions().width,
       fontSize: 20,
     },
     cover: {

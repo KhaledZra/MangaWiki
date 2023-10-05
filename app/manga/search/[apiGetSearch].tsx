@@ -48,7 +48,7 @@ export default function MangaView()  {
   return (
     <>
       <Center>{apiGetSearch}</Center>
-      <Box style={styles.container}>
+      <Box style={styles.container} safeAreaBottom={5}>
         {isLoading ? (
           <Center>
             <ActivityIndicator/>

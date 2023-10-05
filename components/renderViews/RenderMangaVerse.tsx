@@ -1,6 +1,5 @@
 import {MangaVerseData} from "../../data/manga";
-import {Box, Image, Text} from "native-base";
-import {ScrollView} from "react-native";
+import {Box, Image, Text, ScrollView} from "native-base";
 import React from "react";
 import {useStyle} from "../MangaListStyles";
 
@@ -14,7 +13,8 @@ export function RenderMangaVerse (manga: MangaVerseData) {
         style={styles.cover}
         alt={"Manga cover image"}
       />
-      <Box style={styles.description}>
+
+      <Box style={styles.description} safeArea={3}>
 
         <Text style={styles.text}>
           <Text style={{fontWeight: "bold"}}>
