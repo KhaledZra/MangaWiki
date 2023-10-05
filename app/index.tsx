@@ -8,20 +8,6 @@ export default function App() {
   return (
     <VStack space={4}>
       <SearchBar/>
-      <Link href="/Berserk" asChild>
-        <Pressable
-          rounded="8"
-          overflow="hidden"
-          borderWidth="1"
-          borderColor="coolGray.300"
-          maxW="96"
-          shadow="3"
-          bg="coolGray.700"
-          p="5">
-          <Center>Berserk</Center>
-        </Pressable>
-      </Link>
-
       {/*<Link href="/mangaTopTen" asChild>*/}
       {/*  <Pressable*/}
       {/*    rounded="8"*/}
@@ -36,7 +22,7 @@ export default function App() {
       {/*  </Pressable>*/}
       {/*</Link>*/}
 
-      <Link href="/RandomManga" asChild>
+      <Link href="/manga/Random" asChild>
         <Pressable
           rounded="8"
           overflow="hidden"

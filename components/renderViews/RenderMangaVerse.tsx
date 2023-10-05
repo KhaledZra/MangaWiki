@@ -1,4 +1,4 @@
-import {MangaVerseData} from "../../src/data/manga";
+import {MangaVerseData} from "../../data/manga";
 import {Box, Image, Text} from "native-base";
 import {ScrollView} from "react-native";
 import React from "react";

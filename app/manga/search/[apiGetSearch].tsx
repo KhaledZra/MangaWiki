@@ -1,7 +1,7 @@
 import {useGlobalSearchParams} from "expo-router";
 import React, {useEffect, useState} from 'react';
 import {ActivityIndicator} from 'react-native';
-import {MangaVerse} from "../../../src/data/manga";
+import {MangaVerse} from "../../../data/manga";
 import {Box, Text, Center, FlatList} from "native-base";
 import {useStyle} from "../../../components/MangaListStyles";
 import {RenderMangaVerse} from "../../../components/renderViews/RenderMangaVerse";

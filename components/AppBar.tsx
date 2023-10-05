@@ -31,10 +31,10 @@ function MyMenu() {
         </Pressable>
       );
     }}>
-      <Menu.Group title={"Options"}>
+      <Menu.Group title={"Categories"}>
         <Menu.Item onPress={() => router.replace("/manga/top-10")}>Top 10</Menu.Item>
         <Menu.Item onPress={() => router.replace("/manga/popular")}>Popular</Menu.Item>
-        <Menu.Item onPress={() => router.replace("/RandomManga")}>Random</Menu.Item>
+        <Menu.Item onPress={() => router.replace("/manga/Random")}>Random</Menu.Item>
       </Menu.Group>
     </Menu>
   )

@@ -1,4 +1,4 @@
-import {Manga} from "../../src/data/manga";
+import {Manga} from "../../data/manga";
 import {ScrollView, StyleSheet, useWindowDimensions} from "react-native";
 import {Box, Image, Text} from "native-base";
 import React from "react";

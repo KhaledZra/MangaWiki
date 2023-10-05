@@ -1,11 +1,10 @@
 import {router, useGlobalSearchParams} from "expo-router";
 import React, {useEffect, useState} from 'react';
 import {ActivityIndicator, StyleSheet, useWindowDimensions, ScrollView} from 'react-native';
-import {Manga} from "../src/data/manga";
+import {Manga} from "../../data/manga";
 import {Box, Text, Center, FlatList, Image, VStack} from "native-base";
 
-export default function RandomManga() {
-  const {apiGetParam} = useGlobalSearchParams();
+export default function Random() {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState<Manga>();
   const styles = useStyle();
@@ -26,7 +25,7 @@ export default function RandomManga() {
       .then((json) => setData(json))
       .catch((error) => {
         console.log(error);
-        router.replace("/RandomManga");
+        router.replace("/Random");
       })
       .finally(() => setLoading(false));
   }, []);

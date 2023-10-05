@@ -1,7 +1,7 @@
 import {useGlobalSearchParams} from "expo-router";
 import React, {useEffect, useState} from 'react';
 import {ActivityIndicator, StyleSheet, useWindowDimensions, ScrollView} from 'react-native';
-import {Manga} from "../../src/data/manga";
+import {Manga} from "../../data/manga";
 import {Box, Text, Center, FlatList, Image} from "native-base";
 import RenderManga from "../../components/renderViews/RenderManga";
 
