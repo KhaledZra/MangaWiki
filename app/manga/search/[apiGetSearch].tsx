@@ -1,10 +1,11 @@
 import {useGlobalSearchParams} from "expo-router";
 import React, {useEffect, useState} from 'react';
 import {ActivityIndicator} from 'react-native';
-import {MangaVerse} from "../../../data/manga";
+import {MangaVerse, Manga} from "../../../data/manga";
 import {Box, Text, Center, FlatList} from "native-base";
 import {useStyle} from "../../../components/MangaListStyles";
 import {RenderMangaVerse} from "../../../components/renderViews/RenderMangaVerse";
+import RenderManga from "../../../components/renderViews/RenderManga";
 
 const options = {
   method: 'GET',
@@ -17,7 +18,7 @@ const options = {
 export default function MangaView()  {
   const {apiGetSearch} = useGlobalSearchParams();
   const [isLoading, setLoading] = useState(true);
-  const [mangaResult, setResult] = useState<MangaVerse>();
+  const [mangaResult, setResult] = useState<Manga[]>([]); // MangaVerse, array
   const styles = useStyle();
 
   if (apiGetSearch == null) {
@@ -27,11 +28,12 @@ export default function MangaView()  {
   const urlParam = new URLSearchParams({
     text: apiGetSearch.toString()
   })
-  const url = "https://mangaverse-api.p.rapidapi.com/manga/search?" + urlParam.toString();
+  // swap url with: https://mangaverse-api.p.rapidapi.com/manga/search?
+  const url = "https://manga-api-70c3.onrender.com/api/search/?keyword=" + urlParam.toString();
 
 
   useEffect(() => {
-    fetch(url, options)
+    fetch(url) // Put back option if switching to other api
       .then((resp) => {
         if (resp.status === 200) {
           return resp.json()
@@ -41,7 +43,7 @@ export default function MangaView()  {
         }
       })
       .then((json) => setResult(json))
-      .catch((error) => console.error(error))
+      .catch((error) => console.warn(error))
       .finally(() => setLoading(false));
   }, []);
 
@@ -55,11 +57,11 @@ export default function MangaView()  {
           </Center>
         ) : (
           mangaResult ? (
-            mangaResult.data.length > 0 ? (
+            mangaResult.length > 0 ? ( // Data.
               <FlatList
-                data={mangaResult.data}
+                data={mangaResult} // .data
                 keyExtractor={(item) => item.id.toString()} // <RenderMangaVerse {...item}/>
-                renderItem={({item}) => <RenderMangaVerse {...item}/>}
+                renderItem={({item}) => <RenderManga {...item}/>} // RenderMangaVerse
               />) : (<Text fontSize={30}>Bad search!</Text>) ) : (<Text fontSize={30}>No results! :(</Text>)
         )
         }
