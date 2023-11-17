@@ -1,4 +1,4 @@
-package com.khaledzraiqi.myfirstapp;
+package com.khaledzraiqi.mangawiki;
 
 import android.os.Build;
 import android.os.Bundle;

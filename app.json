@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "myfirstapp",
-    "slug": "myfirstapp",
-    "version": "1.0.0",
+    "name": "mangawiki",
+    "slug": "mangawiki",
+    "version": "1.1.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -22,7 +22,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.khaledzraiqi.myfirstapp"
+      "package": "com.khaledzraiqi.mangawiki"
     },
     "web": {
       "favicon": "./assets/favicon.png"

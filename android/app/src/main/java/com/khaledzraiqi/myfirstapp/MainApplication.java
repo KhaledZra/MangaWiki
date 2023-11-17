@@ -1,4 +1,4 @@
-package com.khaledzraiqi.myfirstapp;
+package com.khaledzraiqi.mangawiki;
 
 import android.app.Application;
 import android.content.res.Configuration;
